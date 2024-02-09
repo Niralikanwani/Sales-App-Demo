@@ -6,8 +6,11 @@ import * as Yup from "yup";
 
 import CustomTextField from "components/CustomComponents/TextField";
 import { SignUpModel } from "models/SignUp/SignUp";
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "utility/enums/app-routes";
 
 const SignUp: React.FC = () => {
+	const navigate = useNavigate();
 	const validationSchema = Yup.object().shape({
 		email: Yup.string()
 			.required("Please enter an email address")
@@ -18,36 +21,45 @@ const SignUp: React.FC = () => {
 
 	const methods = useForm<SignUpModel>({
 		defaultValues: new SignUpModel(),
+		mode: "onChange",
 		resolver: yupResolver(validationSchema),
 	});
 
 	const handleSignUp = async (formData: SignUpModel) => {
 		console.log(formData);
 		alert("Sign up successful!");
+		navigate(AppRoutes.SignIn);
 	};
 
 	return (
 		<Box>
-			<Typography variant="h3">Sign Up</Typography>
-			<FormProvider {...methods}>
-				<Grid container spacing={2}>
-					<Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-						<CustomTextField name="email" label="Email" type="email" />
+			<center>
+				<Typography variant="h3">Sign Up</Typography>
+				<br />
+				<FormProvider {...methods}>
+					<Grid container spacing={2} className="form-group">
+						<Grid item xs={12}>
+							<CustomTextField name="email" label="Email" type="email" />
+						</Grid>
+						<Grid item xs={12}>
+							<CustomTextField
+								name="password"
+								label="Password"
+								type="password"
+							/>
+						</Grid>
+						<Grid item xs={12}>
+							<Button
+								type="submit"
+								variant="contained"
+								onClick={methods.handleSubmit(handleSignUp)}
+							>
+								Sign Up
+							</Button>
+						</Grid>
 					</Grid>
-					<Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-						<CustomTextField name="password" label="Password" type="password" />
-					</Grid>
-					<Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-						<Button
-							type="submit"
-							variant="contained"
-							onClick={methods.handleSubmit(handleSignUp)}
-						>
-							Sign Up
-						</Button>
-					</Grid>
-				</Grid>
-			</FormProvider>
+				</FormProvider>
+			</center>
 		</Box>
 	);
 };
