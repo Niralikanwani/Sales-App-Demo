@@ -1,0 +1,56 @@
+.App-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 1rem;
+	background-color: #ffffff;
+	color: #000000;
+	border-bottom: 1px solid black;
+}
+
+.App-logo {
+	height: 40px;
+	cursor: pointer;
+}
+
+.nav-links {
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.nav-links li a {
+	color: black;
+	text-decoration: none;
+	padding: 8px 16px;
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-links li a:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding: 8px 16px;
+	border-radius: 5px;
+	margin-right: 1rem;
+}
+
+.theme-toggle:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.dark-mode .nav-links li a {
+	color: white;
+}
